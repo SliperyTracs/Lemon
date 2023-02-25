@@ -8,11 +8,46 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "foreignKeys"
 }
-model Test{
+model User{
   id Int @id @default(autoincrement())
-  userName String
+  userName String 
   password String
-  DateCreated DateTime
+  email String
+  dateCreated DateTime @default(now())
+  programs Program[]
+}
+model Program{
+  id Int @id @default(autoincrement())
+  dateCreated DateTime @default(now()) 
+  name String 
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  days Day[]
 
+}
+model Day{
+    id Int @id @default(autoincrement())
+    dateCreated DateTime @default(now()) 
+    dayNumber Int 
+    date DateTime
+    program Program @relation(fields: [programId],references:[id])
+    programId Int
+}
+model Set{
+    id Int @id @default(autoincrement())
+    reps Int 
+    weight Int @default(dbgenerated("0"))
+    rpe Int
+    comments String
+    exercise Exercise @relation(fields:[exerciseId],references: [id])
+    exerciseId Int
+}
+model Exercise{
+  id Int @id @default(autoincrement())
+  dateCreated DateTime @default(now()) 
+  name String
+  description String
+  sets Set[]
 }
