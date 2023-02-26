@@ -1,26 +1,23 @@
 import { useRef,useState } from 'react'
-
+import {useRouter} from "next/router"
+import axios from 'axios'
+import Link from "next/link"
 export default function NewProgram() {
-    const titleInputRef = useRef();
+    const router = new useRouter();
+    const nameInputRef = useRef();
     const descriptionInputRef = useRef();
         
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
-        const title = titleInputRef.current.value;
+        const name = nameInputRef.current.value;
         const description = descriptionInputRef.current.value;
-        const options = {
-            method: "POST",
-            body:JSON.stringify({
-                name:name,
-                description:description
-            
-            }),
-            headers:{
-                'Content-Type':"application/json"
-            }
-
-        }
+        const {data} = await axios.post('/api/programs', {
+            name,
+            description,
+            userId:1
+        })
         console.log(data)
+        router.push('/programs')
     }
     
 
@@ -29,14 +26,15 @@ export default function NewProgram() {
             <h1>Add a new program</h1>
             <form onSubmit = {handleSubmit}>
                 <div>
-                    <label htmlFor='title'>Title of your Program:</label>
-                    <input type='text' id='title' ref={titleInputRef}></input>
+                    <label htmlFor='name'>name of your Program:</label>
+                    <input type='text' id='name' ref={nameInputRef}></input>
                 </div>
                 <div>
                     <label htmlFor='description'>Describe your Program:</label>
                     <input type='text' id='description' ref={descriptionInputRef}></input>
                 </div>
-                <button>Create Program</button>
+                <Link type="reset" href="/programs"> Cancel </Link>
+                <button type="submit"> Create Program </button>
             </form>
         </div>
     )
