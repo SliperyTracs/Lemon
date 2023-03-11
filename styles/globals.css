@@ -23,8 +23,8 @@ body {
 }
 img{
   border-radius: 15px;
-  height:100%;
-  width:70%
+  height:50vh;
+  width:40vw;
 }
 a {
   color: inherit;

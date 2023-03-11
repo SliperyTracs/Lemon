@@ -3,7 +3,7 @@ import Image from "next/image"
 import Logo from "../../public/logo.jpg"
 export default function Navbar() {
     return (
-        <nav className="navbar navbar-light bg-dark navbar-expand-lg ">
+        <nav className="navbar navbar-light bg-dark navbar-expand-lg  border-bottom border-dark ">
             <div class="container-fluid">
                 <a className="navbar-brand d-flex align-items-center" href="/"><Image className={styles.image} height="1000" width="1000" src={Logo} alt="logo"/> Lemon</a>
                 
