@@ -16,7 +16,7 @@ export default function Layout({children}){
       </Head>
       <body>
         <Navbar/>
-        <main className="d-flex justify-content-center">
+        <main>
         {children}
         </main>
       </body>
