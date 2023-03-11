@@ -1,23 +1,18 @@
-import Head from 'next/head'
+import styles from '../styles/Home.module.css'
+import Layout from "../components/Layout.js"
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Navbar from '../components/ui/Navbar'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import HomePage from "../public/HomePage.jpg"
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Gym Planner</title>
-        <meta name="description" content="Your ultimate gym companion" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <Navbar/>
-      </main>
-    </>
+    <Layout>
+    <div className="d-flex justify-content-between ">
+       <div className="">
+        <h1>
+          your all-in-one gym companion 
+        </h1>
+       </div>
+       <Image height="1000" width="1000" src={HomePage} alt="HomePage image"/>
+    </div>
+    </Layout>
   )
 }
